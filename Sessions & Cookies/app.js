@@ -36,15 +36,6 @@ app.use(
   })
 );
 
-app.use((req, res, next) => {
-  User.findById('65ad3eb612256b85fa91a3ac')
-    .then((user) => {
-      req.user = user;
-      next();
-    })
-    .catch((err) => console.log(err));
-});
-
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 app.use(authRoutes);
@@ -57,8 +48,8 @@ mongoose
     User.findOne().then((user) => {
       if (!user) {
         const user = new User({
-          name: 'Jaga',
-          email: 'jaga@test.com',
+          name: 'Max',
+          email: 'max@test.com',
           cart: {
             items: [],
           },
