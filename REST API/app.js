@@ -66,8 +66,13 @@ mongoose
     'mongodb+srv://jagblst:67PlKjxXglodwrVI@cluster0.4q7kbiv.mongodb.net/messages'
   )
   .then((result) => {
-    app.listen(8080);
-    const io = require('socket.io')(server);
+    const server = app.listen(8080);
+    const io = require('socket.io')(server, {
+      cors: {
+        origin: 'http://localhost:3000',
+        methods: ['GET', 'POST'],
+      },
+    });
     io.on('connection', (socket) => {
       console.log('Client connected');
     });
