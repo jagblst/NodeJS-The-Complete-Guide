@@ -1,5 +1,5 @@
 const path = require('path');
-const fs = require('fs');
+
 // const cors = require('cors');
 
 const express = require('express');
@@ -11,6 +11,7 @@ const { graphqlHTTP } = require('express-graphql');
 const graphqlSchema = require('./graphql/schema');
 const graphqlResolver = require('./graphql/resolvers');
 const auth = require('./middleware/auth');
+const { clearImage } = require('./util/file');
 
 const app = express();
 
@@ -107,8 +108,3 @@ mongoose
     app.listen(8080);
   })
   .catch((err) => console.log(err));
-
-const clearImage = (filePath) => {
-  filePath = path.join(__dirname, '..', filePath);
-  fs.unlink(filePath, (err) => console.log(err));
-};
